@@ -42,12 +42,25 @@ const actions = {
             console.error('Error creating product:', error);
         }
     },
+    async deleteProduct({ commit }, id) {
+        try {
+            const response = await axios.delete(
+                'https://serverecommercevue.onrender.com/products/id/' + id
+            );
+            commit('removeProduct', id);
+            console.log(response);
+        } catch (error) {
+            console.error('Error updating product:', error);
+        }
+    }
+
 };
 
 const mutations = {
     setProducts: (state, products) => (state.products = products),
     setProduct: (state, product) => (state.products = product),
     newProduct: (state, product) => state.products.push(product),
+    removeProduct: (state, id) => (state.products = state.products.filter(product => product.id !== id))
 };
 
 export default {

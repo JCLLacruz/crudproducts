@@ -14,7 +14,7 @@ export default {
         ...mapGetters(['allProducts']),
     },
     methods: {
-        ...mapActions(['fetchProducts', 'createProduct']),
+        ...mapActions(['fetchProducts', 'createProduct', 'deleteProduct']),
         async addProduct() {
             const product = {
                 productName: this.productName,
@@ -27,6 +27,11 @@ export default {
             this.description = '';
             this.price = '';
             this.imagePath = '';
+        },
+        async handleDelete(id) {
+            console.log('Deleting product with ID:', id);
+            await this.deleteProduct(id);
+            this.fetchProducts();
         },
     },
     created() {
@@ -56,10 +61,10 @@ export default {
           <button type="submit">Crear producto</button>
       </form>
       <div v-for="product in allProducts" :key="product._id">
-          {{ product.productName }}
-          <button>Update Product</button>
-          <button>Delete</button>
-      </div>
+			{{ product.productName }}
+			<button>Update Product</button>
+			<button @click="handleDelete(product._id)" >Delete</button>
+		</div>
   </div>
 </template>
 
