@@ -33,11 +33,21 @@ const actions = {
             console.error('Error updating product:', error);
         }
     },
+    async createProduct({ commit }, product) {
+        try {
+            console.log(product);
+            const response = await axios.post('https://serverecommercevue.onrender.com/products', product);
+            commit('newProduct', response.data.product);
+        } catch (error) {
+            console.error('Error creating product:', error);
+        }
+    },
 };
 
 const mutations = {
     setProducts: (state, products) => (state.products = products),
     setProduct: (state, product) => (state.products = product),
+    newProduct: (state, product) => state.products.push(product),
 };
 
 export default {
