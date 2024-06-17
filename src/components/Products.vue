@@ -1,11 +1,32 @@
 <script>
-export default {};
+import { mapGetters, mapActions } from "vuex";
+
+export default {
+    computed: {
+        ...mapGetters(['allProducts'])
+    },
+    methods: {
+        ...mapActions(['fetchProducts'])
+    },
+    created() {
+        this.fetchProducts();
+    }
+}
 </script>
 
 <template>
-  <h1>Products</h1>
+    <div>
+        <h1>Mis productos</h1>
+        <ul>
+            <li v-for="product in allProducts" :key="product._id">
+                {{ product.productName }}
+            </li>
+        </ul>
+    </div>
 </template>
 
 <style scoped>
-
+h1 {
+    color: red;
+}
 </style>
