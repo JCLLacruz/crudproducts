@@ -22,10 +22,10 @@ const actions = {
             console.error('Error fetching products:', error);
         }
     },
-    async updateProduct({ commit },product, id) {
+    async updateProduct({ commit },product) {
         try {
-            const response = await axios.get(
-                'https://serverecommercevue.onrender.com/products/id/' + id, product
+            const response = await axios.put(
+                'https://serverecommercevue.onrender.com/products/id/' + product._id, product
             );
             commit('Product updated.', response.data.product);
             console.log(response);
@@ -46,7 +46,7 @@ const actions = {
 
 const mutations = {
     setProducts: (state, products) => (state.products = products),
-    setProduct: (state, product) => (state.products = product),
+    setProduct: (state, product) => (state.product = product),
     newProduct: (state, product) => state.products.push(product),
 };
 
