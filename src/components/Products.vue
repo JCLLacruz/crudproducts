@@ -6,7 +6,13 @@ export default {
 		...mapGetters(['allProducts']),
 	},
 	methods: {
-		...mapActions(['fetchProducts']),
+		...mapActions(['fetchProducts','deleteProduct']),
+        async handleDelete(id) {
+            console.log('Deleting product with ID:', id);
+            await this.deleteProduct(id);
+            this.fetchProducts();
+        },
+        
 	},
 	created() {
 		this.fetchProducts();
@@ -21,7 +27,7 @@ export default {
 		<div v-for="product in allProducts" :key="product._id">
 			{{ product.productName }}
 			<button>Update Product</button>
-			<button>Delete</button>
+			<button @click="handleDelete(product._id)" >Delete</button>
 		</div>
 	</div>
 </template>
