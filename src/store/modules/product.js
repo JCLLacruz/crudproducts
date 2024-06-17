@@ -2,10 +2,12 @@ import axios from 'axios';
 
 const state = {
     products: [],
+    product: {},
 };
 
 const getters = {
     allProducts: (state) => state.products,
+    product: (state) => state.product,
 };
 
 const actions = {
@@ -20,10 +22,22 @@ const actions = {
             console.error('Error fetching products:', error);
         }
     },
+    async updateProduct({ commit }, id) {
+        try {
+            const response = await axios.get(
+                'https://serverecommercevue.onrender.com/products/' + id
+            );
+            commit('setProduct', response.data.products);
+            console.log(response);
+        } catch (error) {
+            console.error('Error updating product:', error);
+        }
+    },
 };
 
 const mutations = {
     setProducts: (state, products) => (state.products = products),
+    setProduct: (state, product) => (state.products = product),
 };
 
 export default {

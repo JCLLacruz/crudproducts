@@ -17,11 +17,14 @@ export default {
 <template>
     <div>
         <h1>Mis productos</h1>
-        <ul>
-            <li v-for="product in allProducts" :key="product._id">
+        <button>Create Product</button>
+        <div>
+            <h2 v-for="product in allProducts" :key="product._id">
                 {{ product.productName }}
-            </li>
-        </ul>
+            </h2>
+            <button>Update Product</button>
+            <button>Delete</button>
+        </div>
     </div>
 </template>
 
