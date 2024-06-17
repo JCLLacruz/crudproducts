@@ -26,7 +26,11 @@ export default {
         ...mapGetters(['allProducts', 'product']),
     },
     methods: {
+<<<<<<< HEAD
         ...mapActions(['fetchProducts', 'createProduct', 'updateProduct']),
+=======
+        ...mapActions(['fetchProducts', 'createProduct', 'deleteProduct']),
+>>>>>>> 660e47b9e10e4168f0d2a68a31ec657ee245a9a4
         async addProduct() {
             const product = {
                 productName: this.productName,
@@ -38,6 +42,7 @@ export default {
             await this.fetchProducts();
             this.resetForm();
         },
+<<<<<<< HEAD
         async handleUpdateProduct() {
             const product = {
                 _id: this.productEdit._id,
@@ -62,6 +67,13 @@ export default {
         resetForm() {
             this.productEdit = { _id: '', productName: '', description: '', price: '', image_path: '' };
         }
+=======
+        async handleDelete(id) {
+            console.log('Deleting product with ID:', id);
+            await this.deleteProduct(id);
+            this.fetchProducts();
+        },
+>>>>>>> 660e47b9e10e4168f0d2a68a31ec657ee245a9a4
     },
     created() {
         this.fetchProducts();
