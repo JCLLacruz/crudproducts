@@ -101,7 +101,8 @@ export default {
             <button @click="updateProductHidden(product)">Update Product</button>
             <button @click="handleDelete(product._id)" >Delete</button>
         </div>
-        <div id="updateProductDivForm" class="hidden">
+        <div id="updateProductDivForm" class="hidden formStyle">
+            <h2>Update Product</h2>
             <form @submit.prevent="handleUpdateProduct">
                 <div>
                     <label for="updateProductName">Name:</label>
@@ -120,6 +121,7 @@ export default {
                     <input type="text" id="updateImagePath" v-model="productEdit.image_path" :placeholder="productEdit.image_path">
                 </div>
                 <button type="submit">Update Product</button>
+                <button @click="updateProductHidden(product)">Close</button>
             </form>
         </div>
     </div>
@@ -137,4 +139,16 @@ h1 {
 .hidden {
   display: none;
 }
+.formStyle {
+    position: absolute;
+    background-color: gray;
+    width: 250px;
+    height: 350px;
+    padding: 2rem;
+    top: 50%;
+    bottom: 50%;
+    right: 50%;
+    left: 50%;
+}
+
 </style>
