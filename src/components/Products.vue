@@ -35,8 +35,11 @@ export default {
                 image_path: this.image_path,
             };
             await this.createProduct(product);
-            await this.fetchProducts();
+            if (newProduct) {
+                this.$store.state.allProducts.unshift(newProduct); 
+            }
             this.resetForm();
+            await this.fetchProducts();
         },
         async handleUpdateProduct() {
             const product = {
