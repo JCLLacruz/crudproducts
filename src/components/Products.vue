@@ -136,17 +136,18 @@ export default {
 </template>
 
 <style scoped>
-.createProduct {
+#createProduct {
     display: flex;
+    flex-direction: column;
 }
-.for {
+#for {
     width: 100%;
 }
-.productDiv {
+#productDiv {
     width: 200px;
 }
 
-.productsDiv{
+#productsDiv{
     display: flex;
     flex-wrap: wrap;
     gap: 1rem
