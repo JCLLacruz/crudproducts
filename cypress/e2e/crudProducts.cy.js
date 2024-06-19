@@ -1,12 +1,12 @@
 describe('Testing my crudProducts', () => {
   it('passes', () => {
-    cy.visit('http://localhost:5173/')
+    cy.visit('https://main.d3pqv0p9sznj81.amplifyapp.com/')
     cy.contains("Home")
   }),
  
   it('Create Product', function() {
  
-    cy.visit('http://localhost:5173/')
+    cy.visit('https://main.d3pqv0p9sznj81.amplifyapp.com/')
  
     cy.get('#app > header > .wrapper > nav > a:nth-child(3)').click()
  
@@ -28,44 +28,34 @@ describe('Testing my crudProducts', () => {
  })
 
 
- it('Product update', function() {
+it('Product update', function() {
 
-  cy.visit('http://localhost:5173/')
-
-  cy.get('#app > header > .wrapper > nav > a:nth-child(3)').click()
-
-  cy.get('#app > header > .wrapper > nav > .router-link-active').click()
-
-  cy.get('#app > main > div > div:nth-child(3) > button:nth-child(2)').click()
-
-  cy.get('div > #updateProductDivForm > form > div > #updateProductName').click()
-
-  cy.get('div > #updateProductDivForm > form > div > #updateProductName').type('charizard Update')
-
-  cy.get('main > div > #updateProductDivForm > form > button:nth-child(5)').click()
-
-  cy.get('div > #updateProductDivForm > form > div > #updatePrice').type('100')
-
-  cy.get('main > div > #updateProductDivForm > form > button:nth-child(5)').click()
-
-  cy.get('main > div > #updateProductDivForm > form > button:nth-child(6)').click()
-
-  cy.contains("Mis productos")
-
-})
-
-it('Product delete', function() {
-
-  cy.visit('http://localhost:5173/')
-
-  cy.get('#app > header > .wrapper > nav > a:nth-child(3)').click()
-
-  cy.get('#app > main > div > div:nth-child(3) > button:nth-child(3)').click()
-
-  cy.contains("Mis productos")
+  cy.visit('https://main.d3pqv0p9sznj81.amplifyapp.com/')
+ 
+    cy.get('#app > header > .wrapper > nav > a:nth-child(3)').click()
+ 
+    cy.get(':nth-child(1) > #for > :nth-child(3)').click()
+ 
+    cy.get('div > #updateProductDivForm > form > div > #updateProductName').type('squirtle Update2')
+ 
+    cy.get('main > div > #updateProductDivForm > form > div:nth-child(3)').click()
+ 
+    cy.get('div > #updateProductDivForm > form > div > #updatePrice').type('5')
+ 
+    cy.get('main > div > #updateProductDivForm > form > button:nth-child(5)').click()
+ 
+    cy.get('main > div > #updateProductDivForm > form > button:nth-child(6)').click()
 
 })
 
 
+it('delete product', function() {
 
+  cy.visit('https://main.d3pqv0p9sznj81.amplifyapp.com/')
+
+  cy.get('#app > header > .wrapper > nav > a:nth-child(3)').click()
+
+  cy.get(':nth-child(1) > #for > :nth-child(4)').click()
+
+})
 })
