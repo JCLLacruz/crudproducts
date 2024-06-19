@@ -38,6 +38,7 @@ const actions = {
             console.log(product);
             const response = await axios.post('https://serverecommercevue.onrender.com/products', product);
             commit('newProduct', response.data.product);
+            return newProduct;
         } catch (error) {
             console.error('Error creating product:', error);
         }
@@ -59,7 +60,7 @@ const actions = {
 const mutations = {
     setProducts: (state, products) => (state.products = products),
     setProduct: (state, product) => (state.product = product),
-    newProduct: (state, product) => state.products.push(product),
+    newProduct: (state, product) => state.products.unshift(product),
     removeProduct: (state, id) => (state.products = state.products.filter(product => product.id !== id))
 };
 

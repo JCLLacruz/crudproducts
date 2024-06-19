@@ -17,59 +17,62 @@ export default {
 			productEdit.value = { ...product };
 		};
 
-		return {
-			productEdit,
-			setProductEdit,
-		};
-	},
-	computed: {
-		...mapGetters(['allProducts', 'product']),
-	},
-	methods: {
-		...mapActions(['fetchProducts', 'createProduct', 'updateProduct', 'deleteProduct']),
-		async addProduct() {
-			const product = {
-				productName: this.productName,
-				description: this.description,
-				price: this.price,
-				image_path: this.image_path,
-			};
-			await this.createProduct(product);
-			await this.fetchProducts();
-			this.resetForm();
-		},
-		async handleUpdateProduct() {
-			const product = {
-				_id: this.productEdit._id,
-				productName: this.productEdit.productName,
-				description: this.productEdit.description,
-				price: this.productEdit.price,
-				image_path: this.productEdit.image_path,
-			};
-			await this.updateProduct(product);
-			await this.fetchProducts();
-			this.resetForm();
-		},
-		updateProductHidden(product) {
-			const updateProductDivForm = document.getElementById('updateProductDivForm');
-			if (updateProductDivForm.classList.contains('hidden')) {
-				this.setProductEdit(product);
-				updateProductDivForm.classList.remove('hidden');
-			} else {
-				updateProductDivForm.classList.add('hidden');
-			}
-		},
-		resetForm() {
-			this.productEdit = { _id: '', productName: '', description: '', price: '', image_path: '' };
-		},
-		async handleDelete(id) {
-			await this.deleteProduct(id);
-			this.fetchProducts();
-		},
-	},
-	created() {
-		this.fetchProducts();
-	},
+        return {
+            productEdit,
+            setProductEdit,
+        };
+    },
+    computed: {
+        ...mapGetters(['allProducts', 'product']),
+    },
+    methods: {
+        ...mapActions(['fetchProducts', 'createProduct', 'updateProduct', 'deleteProduct']),
+        async addProduct() {
+            const product = {
+                productName: this.productName,
+                description: this.description,
+                price: this.price,
+                image_path: this.image_path,
+            };
+            await this.createProduct(product);
+            if (newProduct) {
+                this.$store.state.allProducts.unshift(newProduct); 
+            }
+            this.resetForm();
+            await this.fetchProducts();
+        },
+        async handleUpdateProduct() {
+            const product = {
+                _id: this.productEdit._id,
+                productName: this.productEdit.productName,
+                description: this.productEdit.description,
+                price: this.productEdit.price,
+                image_path: this.productEdit.image_path,
+            };
+            await this.updateProduct(product);
+            await this.fetchProducts();
+            this.resetForm();
+        },
+        updateProductHidden(product) {
+            const updateProductDivForm = document.getElementById('updateProductDivForm');
+            if (updateProductDivForm.classList.contains('hidden')) {
+                this.setProductEdit(product);
+                updateProductDivForm.classList.remove('hidden');
+            } else {
+                updateProductDivForm.classList.add('hidden');
+            }
+        },
+        resetForm() {
+            this.productEdit = { _id: '', productName: '', description: '', price: '', image_path: '' };
+        },
+        async handleDelete(id) {
+            await this.deleteProduct(id);
+            this.fetchProducts();
+        },
+    },
+    created() {
+        this.fetchProducts();
+    },
 };
 </script>
 
