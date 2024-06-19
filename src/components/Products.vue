@@ -166,7 +166,7 @@ h1 {
 }
 .formStyle {
 	position: absolute;
-	background-color: gray;
+	background-color: #00BD7E;
 	width: 250px;
 	height: 350px;
 	padding: 2rem;
